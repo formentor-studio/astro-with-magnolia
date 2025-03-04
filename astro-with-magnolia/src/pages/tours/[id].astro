@@ -1,0 +1,30 @@
+---
+import { getCollection, getEntry } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+
+export async function getStaticPaths() {
+    return getCollection('tours').then(entries => entries.map(entry => ({params: {id: entry.id}})))
+}
+
+const { id } = Astro.params
+const tour = await getEntry('tours', id)
+---
+<Layout>
+    <div>
+        <div class="h-[80vh] relative">
+            <img id="header-image" class="absolute top-0 left-0 h-full w-full -z-10 object-cover object-center" src={tour?.data.image} />
+            <div class="relative top-40 max-w-2xl mx-auto">
+                <h1 class="text-center text-8xl text-white text-shadow font-semibold uppercase">{tour?.data.name}</h1>
+            </div>
+        </div>
+    </div> 
+    <div id="detail" class="relative -mt-80">
+        <div class="max-w-4xl bg-white p-4 min-h-2/3 mx-auto text-lg text-center rounded-lg shadow-2xl text-gray-800" set:html={tour?.data.body}></div>
+    </div>
+</Layout>
+
+<style>
+    .text-shadow {
+        text-shadow: 0px 0px 5px #000;
+    }
+</style>

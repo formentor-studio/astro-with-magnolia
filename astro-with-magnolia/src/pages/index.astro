@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const tours = await getCollection('tours')
+---
+
+<Layout>
+    <main>
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-6xl font-extrabold py-8">Tours</h1>
+            <div class="max-w-4xl grid grid-cols-3 gap-6 p-6 bg-green-200 rounded-lg">
+            {
+                tours.map(tour =>  (
+                    <a href={`/tours/${tour.id}`}>
+                        <div class="flex flex-col bg-white  border-green-400 h-full p-2 shadow-md hover:shadow-2xl cursor-pointer">
+                            <h2 class="text-xl font-bold">{tour.data.name}</h2>
+                            <p class="font-light text-gray-500">{tour.data.description}</p>
+                        </div>
+                    </a>
+                ))
+            }
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+#background {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+</style>

@@ -1,0 +1,16 @@
+target
+*.iml
+*.ipr
+*.iws
+*.log
+.idea
+.project
+.classpath
+.settings
+.checkstyle
+rebel.xml
+rebel-remote.xml
+.DS_Store
+
+magnolia-rest-integration-tests/magnolia-rest-test-webapp/overlays
+magnolia-rest-integration-tests/magnolia-rest-test-webapp/repositories

@@ -1,0 +1,11 @@
+services:
+  magnolia:
+    image: formentor/magnolia-cms
+    build: ./magnolia-cms
+    volumes:
+      - magnolia-data:/opt/magnolia/data
+    ports:
+      - "8080:8080"
+volumes:
+  magnolia-data: 
+      
