@@ -21,6 +21,7 @@ ENV MGNL_AUTHOR=true
 
 # ARGS
 ARG MGNL_HEAP=1024M
+ARG MGNL_ENV=docker/tomcat/setenv.sh
 
 # JVM PARAMS
 ENV CATALINA_OPTS -server \
@@ -32,6 +33,9 @@ ENV CATALINA_OPTS -server \
     -Dmagnolia.logs.dir=${MGNL_LOGS_DIR} \
     -Dmagnolia.resources.dir=${MGNL_RESOURCES_DIR} \
     -Dmagnolia.update.auto=true
+
+# Set GitHub configuration at runtime
+COPY ${MGNL_ENV} $CATALINA_HOME/bin/setenv.sh
 
 # VOLUME for Magnolia
 VOLUME [ "${MGNL_APP_DIR}" ]
